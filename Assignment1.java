@@ -59,10 +59,13 @@ public class Assignment1 {
      */
     public static int countDatesOnDay( SimpleDate[] dates, String dayOfWeek ) {
         int numberOfDays = 0;
+        // Format day so that case and redundant spaces do not effect result incorrectly
+        String formatedDay = dayOfWeek.toLowerCase().trim();
+        // Returns 0 if length of formatted day not equal to 3 as will always give value of 0
+        if(formatedDay.length() != 3) return 0;
+        // Iterate through dates and increment numberOfDays if specified day of week
         for (SimpleDate date : dates) {
-            if(dayOfWeek(date).toLowerCase().equals(dayOfWeek.toLowerCase().trim())){
-                numberOfDays += 1;
-            }
+            if(dayOfWeek(date).toLowerCase().equals(formatedDay)) numberOfDays += 1;
         }
         return numberOfDays;
     }
@@ -87,7 +90,29 @@ public class Assignment1 {
      * the method should return "Tue".
      */
     public static String mostFrequentDayOfWeek( SimpleDate[] dates ) {
-        // TO BE COMPLETED
-        return "";
+        if(dates.length == 0) return null;
+        int[] dayNumbers = new int[7];
+
+        // Set array dayNumbers with corresponding indexes to day with frequency of day
+        for (SimpleDate date : dates) {
+            int dateIndex = java.util.Arrays.asList(daysOfTheWeek).indexOf(dayOfWeek(date));
+            dayNumbers[dateIndex] += 1;
+        }
+
+        // Iterate through dayNumbers to work out which is the most frequent
+        // Start with index 2 so in the case frequencies match the earlier day is returned
+        int maxIndex = 2;
+        for (int i = 2; i < 9; i++) {
+            int index = i;
+            if (i >= 7) {
+                index -= 7;
+            }
+
+            if (dayNumbers[index] > dayNumbers[maxIndex]){
+                maxIndex = index;
+            }
+        }
+
+        return daysOfTheWeek[maxIndex];
     }
 }
