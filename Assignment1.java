@@ -8,10 +8,6 @@ import java.util.Arrays;
 public class Assignment1 {
     final private static String[] daysOfTheWeek = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"};
 
-    public static void print(String label, int number){
-        System.out.print(label + ": " + number + "\n");
-    }
-
     /*
      * A method to find the day-of-week for a date.
      *
@@ -95,7 +91,7 @@ public class Assignment1 {
 
         // Set array dayNumbers with corresponding indexes to day with frequency of day
         for (SimpleDate date : dates) {
-            int dateIndex = java.util.Arrays.asList(daysOfTheWeek).indexOf(dayOfWeek(date));
+            int dateIndex = Arrays.asList(daysOfTheWeek).indexOf(dayOfWeek(date));
             dayNumbers[dateIndex] += 1;
         }
 
